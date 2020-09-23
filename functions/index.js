@@ -33,14 +33,21 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     const customername = agent.parameters.name;
     const customerphone = agent.parameters.phone;
     const customeraddress = agent.parameters.address;
-    
+	  const hungry = agent.parameters.hungry;
+	  const menu = agent.parameters.menu;
+          const info = agent.parameters.info;
+	  
     return admin.database().ref('data').set({
+	    hungry=hungry,
+	    menu=menu,
+	    info=info;
     	pizzatype: pizzatype,
       	pizzasize: pizzasize,
       	pizzacount: pizzacount,
       customername: customername,
       customerphone: customerphone,
       customeraddress: customeraddress
+	    
     });
   }
   // Run the proper function handler based on the matched Dialogflow intent name
