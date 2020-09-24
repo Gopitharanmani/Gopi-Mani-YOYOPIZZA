@@ -4,6 +4,9 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const {WebhookClient} = require('dialogflow-fulfillment');
 const {Card, Suggestion} = require('dialogflow-fulfillment');
+const { dialogflow, Permission, SimpleResponse } = require("actions-on-google");
+
+const app = dialogflow();
 
 admin.initializeApp({
 	credential: admin.credential.applicationDefault(),
