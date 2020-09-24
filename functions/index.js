@@ -53,7 +53,25 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 	    
     });
   }
-  // Run the proper function handler based on the matched Dialogflow intent name
+	app.intent("get_current_location", (conv, params, permissionGranted) => {
+  if (permissionGranted) {
+    const { requestedPermission } = conv.data;
+    let address;
+    if (requestedPermission === "DEVICE_PRECISE_LOCATION") {
+      const { coordinates } = conv.device.location;
+      console.log('coordinates are', coordinates);
+
+      if (coordinates && address) {
+        return conv.close(new SimpleResponse(`Your Location details ${address}`));
+      } else {
+       
+        return conv.close("Sorry, I could not figure out where you are.");
+      }
+    }
+  } else {
+    return conv.close("Sorry, permission denied.");
+  }
+});
   let intentMap = new Map();
   intentMap.set('Default Fallback Intent', fallback);
   intentMap.set('Welcome', addorder);
