@@ -10,7 +10,7 @@ const app = dialogflow();
 
 admin.initializeApp({
 	credential: admin.credential.applicationDefault(),
-  	databaseURL: 'ws://yoyopizza-nciepm.firebaseio.com/'
+  	databaseURL: 'https://yoyopizza-a4b73.firebaseio.com/'
 });
  
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
@@ -35,15 +35,8 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     const pizzacount = agent.parameters.count;
     const customername = agent.parameters.name;
     const customerphone = agent.parameters.phone;
-    const customeraddress = agent.parameters.address;
-	  const hungry = agent.parameters.hungry;
-	  const menu = agent.parameters.menu;
-          const info = agent.parameters.info;
-	  
+    const customeraddress = agent.parameters.address;  
     return admin.database().ref('data').set({
-	    hungry=hungry,
-	    menu=menu,
-	    info=info;
     	pizzatype: pizzatype,
       	pizzasize: pizzasize,
       	pizzacount: pizzacount,
