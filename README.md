@@ -1,4 +1,4 @@
-# Pizza-Ordering-ChatBot
+# YOYO Pizza Ordering Chatpot
 Pizza Ordering ChatBot using Dialogflow and Firebase with help of Web demo
 
 ### Dialogflow
